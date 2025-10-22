@@ -39,15 +39,10 @@ const ErrorPage = () => {
                            ring-2 ring-purple-300 ring-offset-2 ring-offset-indigo-100"
             >
                 Go Back to Toy-Land
-                <svg className="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg className="ml-3 w-5 h-5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                 </svg>
             </Link>
-            
-            {/* Optional Footer Link */}
-            <p className="mt-10 text-sm text-gray-500">
-                Found a broken link? <Link to="/contact" className="underline text-purple-600 hover:text-purple-800">Let us know!</Link>
-            </p>
         </div>
     );
 };
