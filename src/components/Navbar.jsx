@@ -48,7 +48,7 @@ const Navbar = () => {
                     <h1>profile</h1>
                 </div>
                <div>
-                 <button className='inline-flex items-center px-4 py-2 bg-purple-600 text-white text-lg font-bold rounded-full shadow-lg  hover:bg-purple-700 transform hover:scale-105 transition-all duration-300 ease-in-out ring-2 ring-purple-300 ring-offset-2 ring-offset-indigo-100'>Login</button>
+                 <Link to={'login'}><button className='inline-flex items-center px-4 py-2 bg-purple-600 text-white text-lg font-bold rounded-full shadow-lg  hover:bg-purple-700 transform hover:scale-105 transition-all duration-300 ease-in-out ring-2 ring-purple-300 ring-offset-2 ring-offset-indigo-100'>Login</button></Link>
                </div>
             </div>
         </div>

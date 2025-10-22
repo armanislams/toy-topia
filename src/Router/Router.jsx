@@ -6,11 +6,16 @@ import Root from '../pages/Route/Root';
 import Loader from '../components/Loader';
 import AllToys from '../pages/AllToys';
 import ToyDetails from '../pages/ToyDetails';
+import PrivateRoute from '../components/PrivateRoute';
+import Login from '../pages/Login';
+import Register from '../pages/Register';
 
 const router = createBrowserRouter([
     {
         path: "/",
         Component: Root,
+        hydrateFallbackElement: <Loader></Loader>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 index: true,
@@ -20,18 +25,29 @@ const router = createBrowserRouter([
             {
                 path: 'all-toys',
                 loader: () => fetch('/toys.json'),
-                element: <AllToys></AllToys>
+                element: <PrivateRoute>
+                    <AllToys></AllToys>
+                </PrivateRoute>
             },
             {
                 path: 'toy/:id',
                 loader: () => fetch('/toys.json'),
-                element: <ToyDetails></ToyDetails>
+                element: <PrivateRoute>
+                    <ToyDetails></ToyDetails>
+                </PrivateRoute>
 
+            },
+            {
+                path: 'login',
+                Component: Login
+            },
+            {
+                path: 'register',
+                Component: Register
             }
         ],
-        hydrateFallbackElement: <Loader></Loader>,
-        errorElement: <ErrorPage></ErrorPage>
     },
+
 ]);
 
 
