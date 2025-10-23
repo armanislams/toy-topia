@@ -4,11 +4,13 @@ import { FaEnvelope, FaEye, FaEyeSlash, FaLock, FaSignInAlt } from 'react-icons/
 import { AuthContext } from '../components/Provider/AuthProvider';
 import { toast } from 'react-toastify';
 import useTitle from '../components/hooks/UseTitle';
+import { useRef } from 'react';
 
 const Login = () => {
     useTitle('Login || Toy Topia')
-    const { signIn, setUser, GoogleLogin } = use(AuthContext);
+    const { signIn, setUser, GoogleLogin, resetPass } = use(AuthContext);
     const [show, setShow] = useState(false)
+    const emailRef = useRef();
     const handleShow = () => {
         setShow(!show)
     }
@@ -45,6 +47,23 @@ const Login = () => {
                 toast.error('Something Went Wrong. Please Try Again')
             })
     }
+    const handleResetPass = () => {
+        const email = emailRef.current.value
+        resetPass(email)
+                    .then(() => {
+                        toast.success(`Password reset link sent to ${email}.`);
+                        window.location.href = "https://mail.google.com/";
+                    })
+                    .catch((err) => {
+                        console.error("Password reset error:", err);
+                        if (err.code === 'auth/missing-email') {
+                            toast.error("No user found with that email. Please check your address.");
+                        }
+                        else {
+                            toast.error("Failed to send reset email.");
+                        }
+                    })
+    }
 
 
     return (
@@ -71,6 +90,7 @@ const Login = () => {
                                 id="email"
                                 name="email"
                                 type="email"
+                                ref={emailRef}
                                 required
                                 className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg transition duration-150"
                                 placeholder="Email address" />
@@ -127,12 +147,16 @@ const Login = () => {
                             Register Now
                         </Link>
                     </p>
-                    <Link
-                        to="/forgot-password"
-                        className="text-xs font-medium text-gray-400 hover:text-indigo-500 transition duration-150 block mt-2"
-                    >
-                        Forgot Password?
-                    </Link>
+                    <p onClick={() => {
+                        if (emailRef.current && emailRef.current.value) {
+                            handleResetPass();
+                        } else {
+                            navigate("/forgot-password");
+                        }
+                    }} className="cursor-pointer text-xs font-medium text-gray-400 hover:text-indigo-500 transition duration-150 block mt-2">Forgot Password?</p>
+                    
+                        
+                    
                 </div>
                 {/* divider */}
                 <div className="divider divider-primary">or</div>
