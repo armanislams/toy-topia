@@ -1,15 +1,24 @@
-import React, { useContext, useState } from 'react';
+import React, { use, useContext, useState } from 'react';
 import { NavLink, Link } from 'react-router';
+import { AuthContext } from './Provider/AuthProvider';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
-    const [isHovering, setIsHovering] = useState(false);
-
-    // Class for Active/Inactive NavLinks
+    const { user, logOut } = use(AuthContext);    
     const navLinkClasses = ({ isActive }) =>
         `font-semibold px-3 py-2 transition-colors duration-200 ${isActive
             ? 'text-red-600 border-b-2 border-red-600' // Active style
             : 'text-gray-700 hover:text-red-500' // Inactive style
         }`;
+    const handleLogout = () => {
+        logOut()
+            .then(() => {
+                toast.success('Log out successful')
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
 
     const navItems = (
         <>
@@ -17,6 +26,7 @@ const Navbar = () => {
             <li><NavLink to="all-toys" className={navLinkClasses}>All toys</NavLink></li>
         </>
     );
+    
 
     return (
         <div className="navbar bg-white shadow-lg border-b border-gray-100 sticky top-0 z-40">
@@ -44,11 +54,17 @@ const Navbar = () => {
             </div>
 
             <div className="navbar-end flex gap-5 px-5">
-                <div>
-                    <h1>profile</h1>
-                </div>
+                {
+                    user && <div className={`hover:${user.displayName}`}>
+                        <img className='rounded-full h-13' src={user.photoURL} alt="" />
+                    </div>
+                }
                <div>
-                 <Link to={'login'}><button className='inline-flex items-center px-4 py-2 bg-purple-600 text-white text-lg font-bold rounded-full shadow-lg  hover:bg-purple-700 transform hover:scale-105 transition-all duration-300 ease-in-out ring-2 ring-purple-300 ring-offset-2 ring-offset-indigo-100'>Login</button></Link>
+                    {
+                        user ?
+                            <Link to={'/'}><button onClick={handleLogout} className='inline-flex items-center px-4 py-2 bg-purple-600 text-white text-lg font-bold rounded-full shadow-lg  hover:bg-purple-700 transform hover:scale-105 transition-all duration-300 ease-in-out ring-2 ring-purple-300 ring-offset-2 ring-offset-indigo-100'>LogOut</button></Link>
+                            :
+                            <button className='inline-flex items-center px-4 py-2 bg-purple-600 text-white text-lg font-bold rounded-full shadow-lg  hover:bg-purple-700 transform hover:scale-105 transition-all duration-300 ease-in-out ring-2 ring-purple-300 ring-offset-2 ring-offset-indigo-100'>Login</button>}
                </div>
             </div>
         </div>

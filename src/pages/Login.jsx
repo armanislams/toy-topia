@@ -3,6 +3,7 @@ import React, { use, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { FaEnvelope, FaLock, FaSignInAlt } from 'react-icons/fa';
 import { AuthContext } from '../components/Provider/AuthProvider';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const { signIn, setUser } = use(AuthContext);
@@ -17,7 +18,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user
                 setUser(user)
-                alert('logged in')
+                toast.success('logged in')
                 navigate(`${location.state ? location.state : '/'}`)
             })
             .catch(error => {
