@@ -1,6 +1,6 @@
 import React, { use, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
-import { FaUser, FaEnvelope, FaLock, FaImage, FaUserPlus } from 'react-icons/fa';
+import { FaUser, FaEnvelope, FaLock, FaImage, FaUserPlus, FaEye } from 'react-icons/fa';
 import { AuthContext } from '../components/Provider/AuthProvider';
 import useTitle from '../components/hooks/UseTitle';
 
@@ -25,7 +25,7 @@ const Register = () => {
         const regEXP = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
         const password = e.target.password.value;
         if (!regEXP.test(password)) {
-            setError('password must be between 8 and 20 characters and requires at least one uppercase letter, one lowercase letter, one number, and one special character.')
+            setError('Please Check Your Password Again')
             return;
                 }
         createUser(email,password)
@@ -109,6 +109,9 @@ const Register = () => {
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <FaLock className="h-5 w-5 text-indigo-400" />
                             </div>
+                            <div className="absolute inset-y-0 right-3 pl-3 flex items-center pointer-events-none">
+                                <FaEye className="h-5 w-5 text-indigo-400" />
+                            </div>
                             <input
                                 id="password"
                                 name="password"
@@ -118,7 +121,8 @@ const Register = () => {
                                 placeholder="Password (min. 6 characters)"
                             />
                         </div>
-                        <p className="mt-2 text-xs text-gray-500">Password must be at least 6 characters long.</p>
+                        <p className="mt-2 text-xs text-gray-500 uppercase"><span className='text-red-500'>password must be</span> <br />Between 8 and 20 characters <br /> one uppercase letter, <br />one lowercase letter,<br />
+                         one number, and one special character.</p>
                     </div>
 
                     {/* --- Photo URL Input (Optional) --- */}
