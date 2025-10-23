@@ -1,7 +1,6 @@
 import React, { use, useState } from 'react';
-// 🔑 Use 'react-router-dom' for proper routing links
 import { Link, useLocation, useNavigate } from 'react-router';
-import { FaEnvelope, FaLock, FaSignInAlt } from 'react-icons/fa';
+import { FaEnvelope, FaEye, FaLock, FaSignInAlt } from 'react-icons/fa';
 import { AuthContext } from '../components/Provider/AuthProvider';
 import { toast } from 'react-toastify';
 import useTitle from '../components/hooks/UseTitle';
@@ -10,6 +9,10 @@ const Login = () => {
     useTitle('Login || Toy Topia')
     const { signIn, setUser, GoogleLogin } = use(AuthContext);
     const [error, setError] = useState('')
+    const [show, setShow] = useState(false)
+    const handleShow = () => {
+        setShow(!show)
+    }
     const location = useLocation();
     const navigate = useNavigate()
     const handleLogin = e => {
@@ -24,22 +27,26 @@ const Login = () => {
                 navigate(`${location.state ? location.state : '/'}`)
             })
             .catch(error => {
-                setError('Email or Password Mismatched')
+                if (error.code === 'auth/invalid-email') {
+                    toast.error('The email address provided is not valid. Create a new account or try again');
+                } else {
+                    toast.error('An unexpected error occurred. Please check your credentials and connection.');
+                }
             })
     }
     const handleGoogleLogin = () => {
         GoogleLogin().then((result) => {
-                const user = result.user
-                console.log(user)
-                setUser(user)
-                toast.success('Successfully Logged In With Google')
-                navigate(`${location.state ? location.state : '/'}`)
-            })
-            .catch(error => {
-            toast.error('Something Went Wrong. Please Try Again')
+            const user = result.user
+            console.log(user)
+            setUser(user)
+            toast.success('Successfully Logged In With Google')
+            navigate(`${location.state ? location.state : '/'}`)
         })
+            .catch(error => {
+                toast.error('Something Went Wrong. Please Try Again')
+            })
     }
-  
+
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
@@ -78,15 +85,20 @@ const Login = () => {
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <FaLock className="h-5 w-5 text-indigo-400" />
                             </div>
+                            <div className="absolute inset-y-0 right-3 pl-3 flex items-center cursor-pointer">
+                                <FaEye onClick={handleShow} className="h-5 w-5 text-indigo-400" />
+
+                            </div>
                             <input
                                 id="password"
                                 name="password"
-                                type="password"
+                                type={`${show ? 'text' : 'password'}`}
                                 required
                                 className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg transition duration-150"
-                                placeholder="Password"
+                                placeholder="Password (min. 6 characters)"
                             />
                         </div>
+                       
                     </div>
 
                     {/* --- Error Message --- */}

@@ -1,10 +1,11 @@
-import React, { use, useContext, useState } from 'react';
+import React, { use } from 'react';
 import { NavLink, Link } from 'react-router';
 import { AuthContext } from './Provider/AuthProvider';
 import { toast } from 'react-toastify';
 
 const Navbar = () => {
     const { user, logOut } = use(AuthContext);    
+    const userIcon = 'https://i.ibb.co/Kx8NVc70/images-q-tbn-ANd9-Gc-SIwu-CARv-k-G1eyy6a-IXkq-Fv-Sr-CVyz-J419-Vbg-s.jpg'
     const navLinkClasses = ({ isActive }) =>
         `font-semibold px-3 py-2 transition-colors duration-200 ${isActive
             ? 'text-red-600 border-b-2 border-red-600' // Active style
@@ -24,6 +25,7 @@ const Navbar = () => {
         <>
             <li><NavLink to="/" className={navLinkClasses}>Home</NavLink></li>
             <li><NavLink to="all-toys" className={navLinkClasses}>All toys</NavLink></li>
+            <li><NavLink to="my-profile" className={navLinkClasses}>My Profile</NavLink></li>
         </>
     );
     
@@ -55,8 +57,20 @@ const Navbar = () => {
 
             <div className="navbar-end flex gap-5 px-5">
                 {
-                    user && <div className={`hover:${user.displayName} hidden lg:block`}>
-                        <img className='rounded-full h-13' src={user.photoURL} alt="" />
+                    user && <div className='group'>
+                        <img
+                            className='w-12 rounded-full'
+                            src={
+                                user && user.photoURL
+                                    ? user.photoURL
+                                    : userIcon
+                            }
+                            alt={user.displayName}
+                        />
+                        <div className='absolute top-full transform -translate-x-1/2 mt-3 
+                                        bg-gray-800 text-white text-sm rounded-lg py-1 px-3 
+                                        whitespace-nowrap z-50 transition-all duration-300 
+                                        scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100'>{user.displayName}</div>
                     </div>
                 }
                <div>

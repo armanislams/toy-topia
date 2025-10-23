@@ -9,6 +9,7 @@ import ToyDetails from '../pages/ToyDetails';
 import PrivateRoute from '../components/Provider/PrivateRoute';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
+import Profile from '../pages/Profile';
 
 const router = createBrowserRouter([
     {
@@ -44,6 +45,12 @@ const router = createBrowserRouter([
             {
                 path: 'register',
                 Component: Register
+            },
+            {
+                path: 'my-profile',
+                element: <PrivateRoute>
+                    <Profile/>
+                </PrivateRoute>
             }
         ],
     },
