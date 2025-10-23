@@ -6,7 +6,7 @@ import Root from '../pages/Route/Root';
 import Loader from '../components/Loader';
 import AllToys from '../pages/AllToys';
 import ToyDetails from '../pages/ToyDetails';
-import PrivateRoute from '../components/PrivateRoute';
+import PrivateRoute from '../components/Provider/PrivateRoute';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 

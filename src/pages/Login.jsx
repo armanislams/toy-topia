@@ -1,48 +1,29 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 // 🔑 Use 'react-router-dom' for proper routing links
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { FaEnvelope, FaLock, FaSignInAlt } from 'react-icons/fa';
+import { AuthContext } from '../components/Provider/AuthProvider';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const [loading, setLoading] = useState(false); // State for button loading/disabling
-
-    const handleSubmit = (e) => {
+    const { signIn, setUser } = use(AuthContext);
+    const [error, setError] = useState('')
+    const location = useLocation();
+    const navigate = useNavigate()
+    const handleLogin = e => {
         e.preventDefault();
-        setError(''); // Clear previous errors
-        setLoading(true);
-
-        // --- Authentication Logic Placeholder ---
-
-        // Example: Simple validation
-        if (!email || !password) {
-            setError('Please enter both email and password.');
-            setLoading(false);
-            return;
-        }
-
-        console.log('Attempting login with:', { email, password });
-
-        // In a real app, you would call your Firebase/API login function here.
-        // On success: redirect the user.
-        // On failure: setError(error.message) and setLoading(false).
-
-        // Simulate a network delay
-        setTimeout(() => {
-            setLoading(false);
-            // Example: Force an error for demonstration
-            if (email !== 'test@example.com') {
-                setError('Invalid credentials. Please try again.');
-            } else {
-                alert('Login successful! (Placeholder)');
-                // Ideally, redirect to home or user dashboard here
-            }
-        }, 1500);
-
-        // ------------------------------------------
-    };
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        signIn(email, password)
+            .then(result => {
+                const user = result.user
+                setUser(user)
+                alert('logged in')
+                navigate(`${location.state ? location.state : '/'}`)
+            })
+            .catch(error => {
+                setError('Email or Password Mismatched')
+            })
+    }
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
@@ -55,7 +36,7 @@ const Login = () => {
                     Sign in to explore your saved toys.
                 </p>
 
-                <form className="space-y-6" onSubmit={handleSubmit}>
+                <form className="space-y-6" onSubmit={handleLogin}>
 
                     {/* --- Email Input --- */}
                     <div>
@@ -69,12 +50,8 @@ const Login = () => {
                                 name="email"
                                 type="email"
                                 required
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
                                 className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg transition duration-150"
-                                placeholder="Email address"
-                                disabled={loading}
-                            />
+                                placeholder="Email address" />
                         </div>
                     </div>
 
@@ -90,11 +67,8 @@ const Login = () => {
                                 name="password"
                                 type="password"
                                 required
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
                                 className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg transition duration-150"
                                 placeholder="Password"
-                                disabled={loading}
                             />
                         </div>
                     </div>
@@ -111,22 +85,12 @@ const Login = () => {
                         <button
                             type="submit"
                             className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-lg text-lg font-bold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-200 disabled:opacity-50"
-                            disabled={loading}
                         >
-                            {loading ? (
-                                <>
-                                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                    </svg>
-                                    Logging in...
-                                </>
-                            ) : (
-                                <>
-                                    <FaSignInAlt className="mr-3 h-5 w-5" />
-                                    Sign In
-                                </>
-                            )}
+                            <>
+                                <FaSignInAlt className="mr-3 h-5 w-5" />
+                                Sign In
+                            </>
+
                         </button>
                     </div>
                 </form>
