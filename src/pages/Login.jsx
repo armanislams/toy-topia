@@ -1,6 +1,6 @@
 import React, { use, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
-import { FaEnvelope, FaEye, FaLock, FaSignInAlt } from 'react-icons/fa';
+import { FaEnvelope, FaEye, FaEyeSlash, FaLock, FaSignInAlt } from 'react-icons/fa';
 import { AuthContext } from '../components/Provider/AuthProvider';
 import { toast } from 'react-toastify';
 import useTitle from '../components/hooks/UseTitle';
@@ -8,7 +8,6 @@ import useTitle from '../components/hooks/UseTitle';
 const Login = () => {
     useTitle('Login || Toy Topia')
     const { signIn, setUser, GoogleLogin } = use(AuthContext);
-    const [error, setError] = useState('')
     const [show, setShow] = useState(false)
     const handleShow = () => {
         setShow(!show)
@@ -30,7 +29,7 @@ const Login = () => {
                 if (error.code === 'auth/invalid-email') {
                     toast.error('The email address provided is not valid. Create a new account or try again');
                 } else {
-                    toast.error('An unexpected error occurred. Please check your credentials and connection.');
+                    toast.error('An unexpected error occurred. Please check your credentials again.');
                 }
             })
     }
@@ -42,7 +41,7 @@ const Login = () => {
             toast.success('Successfully Logged In With Google')
             navigate(`${location.state ? location.state : '/'}`)
         })
-            .catch(error => {
+            .catch(() => {
                 toast.error('Something Went Wrong. Please Try Again')
             })
     }
@@ -56,7 +55,7 @@ const Login = () => {
                     Welcome Back!
                 </h2>
                 <p className="text-center text-gray-500 mb-8">
-                    Sign in to explore your saved toys.
+                    Sign in to explore your saved toys.and
                 </p>
 
                 <form className="space-y-6" onSubmit={handleLogin}>
@@ -85,8 +84,8 @@ const Login = () => {
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <FaLock className="h-5 w-5 text-indigo-400" />
                             </div>
-                            <div className="absolute inset-y-0 right-3 pl-3 flex items-center cursor-pointer">
-                                <FaEye onClick={handleShow} className="h-5 w-5 text-indigo-400" />
+                            <div onClick={handleShow} className="absolute inset-y-0 right-3 pl-3 flex items-center cursor-pointer">
+                                {show ? <FaEyeSlash className="h-5 w-5 text-indigo-400" /> : <FaEye className="h-5 w-5 text-indigo-400" />}
 
                             </div>
                             <input
@@ -101,12 +100,6 @@ const Login = () => {
                        
                     </div>
 
-                    {/* --- Error Message --- */}
-                    {error && (
-                        <p className="text-red-600 text-sm font-medium text-center bg-red-50 p-3 rounded-lg border border-red-200">
-                            {error}
-                        </p>
-                    )}
 
                     {/* --- Submit Button --- */}
                     <div>
