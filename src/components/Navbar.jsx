@@ -2,15 +2,19 @@ import React, { use } from 'react';
 import { NavLink, Link } from 'react-router';
 import { AuthContext } from './Provider/AuthProvider';
 import { toast } from 'react-toastify';
+import Loader from './Loader';
 
 const Navbar = () => {
-    const { user, logOut } = use(AuthContext);    
+    const { user, logOut, loading } = use(AuthContext);    
     const userIcon = 'https://i.ibb.co/Kx8NVc70/images-q-tbn-ANd9-Gc-SIwu-CARv-k-G1eyy6a-IXkq-Fv-Sr-CVyz-J419-Vbg-s.jpg'
     const navLinkClasses = ({ isActive }) =>
         `font-semibold px-3 py-2 transition-colors duration-200 ${isActive
-            ? 'text-red-600 border-b-2 border-red-600' // Active style
-            : 'text-gray-700 hover:text-red-500' // Inactive style
+            ? 'text-red-600 border-b-2 border-red-600'
+            : 'text-gray-700 hover:text-red-500' 
         }`;
+    if (loading) {
+        return <Loader></Loader>
+    }
     const handleLogout = () => {
         logOut()
             .then(() => {

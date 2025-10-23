@@ -3,7 +3,7 @@ import { Link, useLoaderData, useNavigation, useParams } from 'react-router';
 import { FaStar, FaEnvelope, FaShoppingCart, FaDollarSign, FaTag } from 'react-icons/fa';
 import useTitle from '../components/hooks/UseTitle';
 import Loader from '../components/Loader';
-import DetailItem from '../components/DetailItem';
+import DetailItem from '../Layout/DetailItem';
 
 
 const ToyDetails = () => {
@@ -14,7 +14,7 @@ const ToyDetails = () => {
     const toy = toysData.find(toy => toy.toyId === Number(id));
     useTitle(toy ? toy.toyName : 'Toy Details | Loading...');
     if (isLoading) {
-        return <div className="min-h-[70vh]"><Loader /></div>; 
+        return <Loader></Loader>; 
     }
   
     
