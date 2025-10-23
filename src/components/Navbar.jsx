@@ -55,16 +55,16 @@ const Navbar = () => {
 
             <div className="navbar-end flex gap-5 px-5">
                 {
-                    user && <div className={`hover:${user.displayName}`}>
+                    user && <div className={`hover:${user.displayName} hidden lg:block`}>
                         <img className='rounded-full h-13' src={user.photoURL} alt="" />
                     </div>
                 }
                <div>
                     {
                         user ?
-                            <Link to={'/'}><button onClick={handleLogout} className='inline-flex items-center px-4 py-2 bg-purple-600 text-white text-lg font-bold rounded-full shadow-lg  hover:bg-purple-700 transform hover:scale-105 transition-all duration-300 ease-in-out ring-2 ring-purple-300 ring-offset-2 ring-offset-indigo-100'>LogOut</button></Link>
+                            <button onClick={handleLogout} className='inline-flex items-center px-4 py-2 bg-purple-600 text-white text-lg font-bold rounded-full shadow-lg  hover:bg-purple-700 transform hover:scale-105 transition-all duration-300 ease-in-out ring-2 ring-purple-300 ring-offset-2 ring-offset-indigo-100'>LogOut</button>
                             :
-                            <button className='inline-flex items-center px-4 py-2 bg-purple-600 text-white text-lg font-bold rounded-full shadow-lg  hover:bg-purple-700 transform hover:scale-105 transition-all duration-300 ease-in-out ring-2 ring-purple-300 ring-offset-2 ring-offset-indigo-100'>Login</button>}
+                            <Link to={'/login'}><button className='inline-flex items-center px-4 py-2 bg-purple-600 text-white text-lg font-bold rounded-full shadow-lg  hover:bg-purple-700 transform hover:scale-105 transition-all duration-300 ease-in-out ring-2 ring-purple-300 ring-offset-2 ring-offset-indigo-100'>Login</button></Link>}
                </div>
             </div>
         </div>

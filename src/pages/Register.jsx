@@ -2,25 +2,32 @@ import React, { use, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { FaUser, FaEnvelope, FaLock, FaImage, FaUserPlus } from 'react-icons/fa';
 import { AuthContext } from '../components/Provider/AuthProvider';
+import useTitle from '../components/hooks/UseTitle';
 
 const Register = () => {
+    useTitle('Register || Toy Topia')
     const {createUser, setUser, updateUser} = use(AuthContext);
      const [nameError, setNameError] = useState('')
      const [error, setError] = useState('')
      const navigate = useNavigate()
-    const handleRegister = e =>{
+    const handleRegister = e => {
         e.preventDefault()
         const name = e.target.name.value;
-        if(name.length < 5){
-            setNameError('Name Should Be More Than 5 Character')
+        if (name.length < 5) {
+            setNameError('Name Should Be More Than or equal to 5 Character')
             return
         }
-        else{
+        else {
             setNameError('')
         }
         const photo = e.target.photo.value;
         const email = e.target.email.value;
+        const regEXP = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
         const password = e.target.password.value;
+        if (!regEXP.test(password)) {
+            setError('password must be between 8 and 20 characters and requires at least one uppercase letter, one lowercase letter, one number, and one special character.')
+            return;
+                }
         createUser(email,password)
         .then(result=>{
             const user = result.user;
@@ -60,7 +67,7 @@ const Register = () => {
                     <div>
                         <label htmlFor="name" className="sr-only">Full Name</label>
                         <div className="relative">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <div className="absolute inset-y-0  left-0 pl-3 flex items-center pointer-events-none">
                                 <FaUser className="h-5 w-5 text-indigo-400" />
                             </div>
                             <input
@@ -71,6 +78,9 @@ const Register = () => {
                                 className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg transition duration-150"
                                 placeholder="Full Name"
                             />
+                            {
+                                nameError && <p className='text-red-500'>{nameError}</p>
+                            }
                         </div>
                     </div>
 
