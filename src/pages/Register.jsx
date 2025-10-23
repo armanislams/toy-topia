@@ -4,14 +4,36 @@ import { FaUser, FaEnvelope, FaLock, FaImage, FaUserPlus, FaEye } from 'react-ic
 import { AuthContext } from '../components/Provider/AuthProvider';
 import useTitle from '../components/hooks/UseTitle';
 import { toast } from 'react-toastify';
+import { useRef } from 'react';
 
 const Register = () => {
     useTitle('Register || Toy Topia')
-    const { createUser, setUser, updateUser, GoogleLogin } = use(AuthContext);
+    const { createUser, setUser, updateUser, GoogleLogin, resetPass } = use(AuthContext);
     const [show, setShow] = useState(false)
     const [nameError, setNameError] = useState('')
     const [error, setError] = useState('')
     const navigate = useNavigate()
+    const emailRef = useRef();
+    const handleResetPass = () => {
+        const email = emailRef.current.value
+        resetPass(email)
+            .then(() => {
+                toast.success(`Password reset link sent to ${email}.`);
+                window.location.href = "https://mail.google.com/";
+            })
+            .catch((err) => {
+                console.error("Password reset error:", err.code);
+                if (err.code === 'auth/missing-email') {
+                    toast.error("No user found with that email. Please check your address.");
+                } else if (err.code === 'auth/invalid-email') {
+                    toast.error('The email address provided is not valid.')
+                }
+                else {
+                    toast.error("Failed to send reset email.");
+                }
+            })
+    }
+    
     const handleRegister = e => {
         e.preventDefault()
         const name = e.target.name.value;
@@ -43,7 +65,7 @@ const Register = () => {
                     })
 
             })
-            .catch(error => {
+                .catch(error => {
                 if (error.code === 'auth/email-already-in-use') {
                     toast.error('This email is already registered. Please login or use a different email.');
                 } else if (error.code === 'auth/invalid-email') {
@@ -116,6 +138,7 @@ const Register = () => {
                                 id="email"
                                 name="email"
                                 type="email"
+                                ref={emailRef}
                                 required
                                 className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg transition duration-150"
                                 placeholder="Email address"
@@ -200,6 +223,15 @@ const Register = () => {
                             Sign In
                         </Link>
                     </p>
+                    {/* forget pass */}
+                <p onClick={() => {
+                    if (emailRef.current && emailRef.current.value) {
+                        handleResetPass();
+                    } else {
+                        navigate("/forgot-password");
+                    }
+                }} className="cursor-pointer text-xs font-medium text-gray-400 hover:text-indigo-500 transition duration-150 block mt-2">
+                    Forgot Password?</p>
                 </div>
                 {/* divider */}
                 <div className="divider divider-primary">or</div>

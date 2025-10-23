@@ -102,4 +102,4 @@ This project is [MIT](LICENSE) licensed.
 
 ## 👨‍💻 Author
 
-- **[Arman]** - [GitHub Profile](https://github.com/armanislams)
+- **[Arman]** - [GitHub Profile](https://github.com/armanislams   )
