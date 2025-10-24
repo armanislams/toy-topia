@@ -11,6 +11,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Profile from '../pages/Profile';
 import ForgotPassword from '../pages/ForgetPassword';
+import TryNow from '../components/TryNow';
 
 const router = createBrowserRouter([
     {
@@ -50,6 +51,13 @@ const router = createBrowserRouter([
             {
                 path: 'forgot-password',
                 Component: ForgotPassword
+            },
+            {
+                path: 'try-now/:id',
+                loader: () => fetch('/toys.json'),
+                element: <PrivateRoute>
+                    <TryNow></TryNow>
+                </PrivateRoute>
             },
             {
                 path: 'my-profile',

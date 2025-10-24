@@ -1,5 +1,5 @@
 import React, { use } from 'react';
-import { NavLink, Link } from 'react-router';
+import { NavLink, Link, Navigate } from 'react-router';
 import { AuthContext } from './Provider/AuthProvider';
 import { toast } from 'react-toastify';
 import Loader from './Loader';
@@ -61,7 +61,7 @@ const Navbar = () => {
 
             <div className="navbar-end flex gap-5 px-5">
                 {
-                    user && <div className='group'>
+                    user && <Link to={'my-profile'} className='group'>
                         <img
                             className='w-12 rounded-full'
                             src={
@@ -75,7 +75,7 @@ const Navbar = () => {
                                         bg-gray-800 text-white text-sm rounded-lg py-1 px-3 
                                         whitespace-nowrap z-50 transition-all duration-300 
                                         scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100'>{user.displayName}</div>
-                    </div>
+                    </Link>
                 }
                <div>
                     {

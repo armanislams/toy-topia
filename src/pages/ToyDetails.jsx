@@ -57,13 +57,25 @@ const ToyDetails = () => {
                             <DetailItem icon={<FaEnvelope />} label="Seller Email" value={toy.sellerEmail}/>
                             <DetailItem icon={<span>👤</span>} label="Seller Name" value={toy.sellerName} />
                         </div>
-                        <button onClick={()=>toast.success('Added To Your Cart')}
-                            className="w-full py-4 mt-6 bg-indigo-600 text-white text-xl font-bold rounded-xl shadow-lg 
-                                       hover:bg-indigo-700 transition duration-200 disabled:opacity-50"
-                            disabled={toy.availableQuantity === 0}
-                        >
-                            {toy.availableQuantity > 0 ? "Add to Cart" : "Out of Stock"}
-                        </button>
+                        <div className="flex gap-4 mt-6">
+                            {/* 1. Try Now Button */}
+                            <Link to={`/try-now/${id}`}   
+                                className="w-1/2 py-4 bg-indigo-200 text-indigo-700 text-xl font-bold rounded-xl shadow-lg 
+                   hover:bg-indigo-300 transition duration-200 text-center"
+                            >
+                                Try Now
+                            </Link>
+
+                            {/* 2. Add to Cart Button */}
+                            <button
+                                onClick={() => toast.success('Added To Your Cart')}
+                                className="w-1/2 py-4 bg-indigo-600 text-white text-xl font-bold rounded-xl shadow-lg 
+                   hover:bg-indigo-700 transition duration-200 disabled:opacity-50"
+                                disabled={toy.availableQuantity === 0}
+                            >
+                                {toy.availableQuantity > 0 ? "Add to Cart" : "Out of Stock"}
+                            </button>
+                        </div>  
 
                     </div>
                 </div>
