@@ -83,7 +83,7 @@ const AllToys = () => {
                                         <td className="px-4 py-3 whitespace-nowrap text-sm font-semibold text-indigo-600 hidden sm:table-cell">{toy.subCategory}</td>
                                         <td className="px-4 py-3 whitespace-nowrap text-sm font-bold text-red-500">${toy.price?.toFixed(2)}</td>
                                         <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-700 hidden sm:table-cell">{toy.availableQuantity}</td>
-                                        <td className="px-4 py-3 whitespace-nowrap text-sm text-yellow-500 hidden sm:table-cell">
+                                        <td className="px-4 py-3 whitespace-nowrap text-sm text-yellow-500 hidden sm:table-cell lg:flex items-center mt-2">
                                             <FaStar className="mr-1 text-xs" /> {toy.rating}
                                         </td>
                                         <td className="px-4 py-3 whitespace-nowrap text-sm font-medium">

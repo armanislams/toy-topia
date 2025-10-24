@@ -23,7 +23,7 @@ const Home = () => {
         AOS.init({ duration: 1000, once: true });
     }, []);
     const popularToys = toysData.slice(0, 8); 
-    const sliderImages = toysData.slice(0, 3).map((toy, index) => ({
+    const sliderImages = toysData.slice(0, 4).map((toy, index) => ({
     id: toy.toyId,
     url: toy.pictureURL,
     caption: toy.toyName, 
@@ -44,10 +44,8 @@ const Home = () => {
             >
                 {sliderImages.map((slide) => (
                     <SwiperSlide key={slide.id}>
-                        <div 
-                            className="h-full bg-cover bg-center flex items-center justify-start p-10 md:p-20"
-                            style={{ backgroundImage: `url(${slide.url})` }} 
-                        >
+                        <div className="h-full bg-center flex items-center justify-start p-10 md:p-20"
+                            style={{ backgroundImage: `url(${slide.url})` }}>
                             <div className="absolute inset-0 bg-black opacity-40"></div>
                             
                             <div className="relative z-10 text-white max-w-lg text-left">

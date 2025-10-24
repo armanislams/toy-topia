@@ -4,6 +4,7 @@ import { FaStar, FaEnvelope, FaShoppingCart, FaDollarSign, FaTag } from 'react-i
 import useTitle from '../components/hooks/UseTitle';
 import Loader from '../components/Loader';
 import DetailItem from '../Layout/DetailItem';
+import { toast } from 'react-toastify';
 
 
 const ToyDetails = () => {
@@ -56,7 +57,7 @@ const ToyDetails = () => {
                             <DetailItem icon={<FaEnvelope />} label="Seller Email" value={toy.sellerEmail}/>
                             <DetailItem icon={<span>👤</span>} label="Seller Name" value={toy.sellerName} />
                         </div>
-                        <button 
+                        <button onClick={()=>toast.success('Added To Your Cart')}
                             className="w-full py-4 mt-6 bg-indigo-600 text-white text-xl font-bold rounded-xl shadow-lg 
                                        hover:bg-indigo-700 transition duration-200 disabled:opacity-50"
                             disabled={toy.availableQuantity === 0}
