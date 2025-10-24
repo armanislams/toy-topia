@@ -2,7 +2,9 @@ import React, { use } from 'react';
 import { useLoaderData, useNavigate, useParams } from 'react-router';
 import { toast } from 'react-toastify';
 import { AuthContext } from './Provider/AuthProvider';
+import useTitle from './hooks/UseTitle';
 const TryNow = () => {
+    useTitle('Try Our Toys Now')
     const {user} = use(AuthContext)
     const { id } = useParams()
     const toysData = useLoaderData();

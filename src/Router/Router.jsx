@@ -12,6 +12,7 @@ import Register from '../pages/Register';
 import Profile from '../pages/Profile';
 import ForgotPassword from '../pages/ForgetPassword';
 import TryNow from '../components/TryNow';
+import LocalSeller from '../components/LocalSeller';
 
 const router = createBrowserRouter([
     {
@@ -63,6 +64,13 @@ const router = createBrowserRouter([
                 path: 'my-profile',
                 element: <PrivateRoute>
                     <Profile/>
+                </PrivateRoute>
+            },
+            {
+                path: 'sellers',
+                loader: () => fetch('/toys.json'),
+                element: <PrivateRoute>
+                    <LocalSeller/>
                 </PrivateRoute>
             }
         ],
