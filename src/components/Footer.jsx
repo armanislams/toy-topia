@@ -12,7 +12,7 @@ const Footer = () => {
 
     return (
         // Changed bg-gray-800 to a richer 'slate' and border to a playful 'pink'
-        <footer className="footer p-12 bg-slate-800 text-gray-200 border-t-8 border-pink-500 shadow-2xl shadow-slate-900/50">
+        <footer className="footer py-7 px-12 bg-slate-800 text-gray-200 border-t-8 border-pink-500 shadow-2xl shadow-slate-900/50">
             
             <div className="container mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
                 
@@ -34,10 +34,10 @@ const Footer = () => {
                 <div className="space-y-2">
                     <span className="footer-title text-pink-400 text-lg font-bold">Company</span>
                     <nav className="flex flex-col space-y-1">
-                        <Link to="/about" className={linkClasses}>About Us</Link>
-                        <Link to="/contact" className={linkClasses}>Contact</Link>
-                        <Link to="/terms" className={linkClasses}>Terms of Service</Link>
-                        <Link to="/privacy" className={linkClasses}>Privacy Policy</Link>
+                        <Link to="/about-us" className={linkClasses}>About Us</Link>
+                        <Link to="/contact-us" className={linkClasses}>Contact</Link>
+                        <Link to="/terms-and-conditions" className={linkClasses}>Terms of Service</Link>
+                        <Link to="/privacy-policy" className={linkClasses}>Privacy Policy</Link>
                     </nav>
                 </div>
 
@@ -46,8 +46,8 @@ const Footer = () => {
                     <span className="footer-title text-pink-400 text-lg font-bold">Customer Hub</span>
                     <nav className="flex flex-col space-y-1">
                         <Link to="/faq" className={linkClasses}>FAQ</Link>
-                        <Link to="/returns" className={linkClasses}>Shipping & Returns</Link>
-                        <Link to="/sitemap" className={linkClasses}>Site Map</Link>
+                        <Link to="/shipping-and-returns" className={linkClasses}>Shipping & Returns</Link>
+                        <Link to="/site-map" className={linkClasses}>Site Map</Link>
                         <Link to="/careers" className={linkClasses}>Careers</Link>
                     </nav>
                 </div>

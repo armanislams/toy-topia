@@ -9,7 +9,24 @@
     "availableQuantity": 75,
     "description": "A timeless set of colorful Lego bricks that encourages creativity and problem-solving. Kids can build anything they imagine, from houses to vehicles.",
     "pictureURL": "https://i.ibb.co/HDhSxQS8/shopping-q-tbn-ANd9-Gc-Rl-Yf-Oz-Dgx-O98h-Qbe7-YWm5ch3kk-I6b-Vg6r-RMnzh3-J4sq8jwd-q-AXu4-AKxwbxfa-PT9.webp",
-    "subCategory": "Building Blocks"
+    "subCategory": "Building Blocks",
+    "brand": "LEGO",
+    "material": "ABS Plastic",
+    "ageRange": "4+ years",
+    "dimensions": "Varies by build",
+    "warranty": "6 months",
+    "isAvailable": true,
+    "tags": ["creative", "STEM", "blocks"],
+    "testimonials": [
+      {
+        "name": "Aisha M.",
+        "comment": "My kids spent hours building with this set. Super fun and great quality!"
+      },
+      {
+        "name": "Jason R.",
+        "comment": "Classic Lego experience, perfect starter kit for beginners."
+      }
+    ]
   },
   {
     "toyId": 2,
@@ -21,7 +38,24 @@
     "availableQuantity": 0,
     "description": "Articulated figure with light-up helmet and cosmic blaster accessory. Perfect for space adventures!",
     "pictureURL": "https://i.ibb.co/DPLzmTtd/LEGO-Icons-Galaxy-Explorer-10497-90th-Anniversary-Collectible-Edition-Model-Spaceship-Space-Building.jpg",
-    "subCategory": "Action Figures"
+    "subCategory": "Action Figures",
+    "brand": "StarX",
+    "material": "PVC Plastic",
+    "ageRange": "6+ years",
+    "dimensions": "8 inches height",
+    "warranty": "3 months",
+    "isAvailable": false,
+    "tags": ["space", "action figure", "light-up"],
+    "testimonials": [
+      {
+        "name": "Suriya L.",
+        "comment": "The light-up helmet is so cool! My son brings it everywhere."
+      },
+      {
+        "name": "Nadia K.",
+        "comment": "Best action figure we've bought! Very detailed and durable."
+      }
+    ]
   },
   {
     "toyId": 3,
@@ -33,7 +67,24 @@
     "availableQuantity": 120,
     "description": "Beautiful 12-inch doll with royal gown and long, brushable blonde hair. Includes tiara and shoes.",
     "pictureURL": "https://i.ibb.co/RpxDz5Ct/images-q-tbn-ANd9-Gc-QQn-Mh-Esr-Fvyf92-Sk7i6c-Hl1f-Zbh-Jm-Gg9-Nd-IQ-s.jpg",
-    "subCategory": "Dolls"
+    "subCategory": "Dolls",
+    "brand": "DreamDoll",
+    "material": "Vinyl + Fabric",
+    "ageRange": "3+ years",
+    "dimensions": "12 inches",
+    "warranty": "1 year",
+    "isAvailable": true,
+    "tags": ["doll", "princess", "fantasy"],
+    "testimonials": [
+      {
+        "name": "Emily Z.",
+        "comment": "My daughter loves brushing the hair. Great gift!"
+      },
+      {
+        "name": "Farah H.",
+        "comment": "Cute doll with good quality dress. Worth the price."
+      }
+    ]
   },
   {
     "toyId": 4,
@@ -45,7 +96,24 @@
     "availableQuantity": 45,
     "description": "Classic wooden railway set with track pieces, engine, carriages, buildings, and figures. Compatible with all major wooden tracks.",
     "pictureURL": "https://i.ibb.co/zHF35Shc/images-q-tbn-ANd9-Gc-S-Voieh2-Og-Mcz5-TIQSNNEI4rapq-Gcv-Mp-Jb4-A-s.jpg",
-    "subCategory": "Wooden Toys"
+    "subCategory": "Wooden Toys",
+    "brand": "RailMaster",
+    "material": "Polished Wood",
+    "ageRange": "3+ years",
+    "dimensions": "Varies by setup",
+    "warranty": "1 year",
+    "isAvailable": true,
+    "tags": ["wooden", "train", "classic"],
+    "testimonials": [
+      {
+        "name": "Kelvin T.",
+        "comment": "Solid wood and smooth tracks. Kids love building new layouts."
+      },
+      {
+        "name": "Anna P.",
+        "comment": "Very nostalgic and extremely well-made. Highly recommended."
+      }
+    ]
   },
   {
     "toyId": 5,
@@ -57,186 +125,23 @@
     "availableQuantity": 90,
     "description": "Vibrant 100-piece puzzle featuring detailed marine life. Excellent for developing fine motor skills and observation.",
     "pictureURL": "https://i.ibb.co/v4fCt725/images-q-tbn-ANd9-Gc-Rn-N3zl-Pg-V5-Japej-Hg-EOug4-DCurglq-Kah02f-A-s.jpg",
-    "subCategory": "Puzzles"
-  },
-  {
-    "toyId": 6,
-    "toyName": "RC Monster Truck 'Crush'",
-    "sellerName": "Zoom Zone RC",
-    "sellerEmail": "zoomzone@local.com",
-    "price": 79.99,
-    "rating": 4.9,
-    "availableQuantity": 22,
-    "description": "High-speed remote control monster truck with massive tires and durable suspension for off-road fun.",
-    "pictureURL": "https://i.ibb.co/JRwS6QXK/images-q-tbn-ANd9-Gc-Rdmxu-Eo-Si-Ymllua-Th-BHbs6i0z-GN2gj-Or-EAg-s.jpg",
-    "subCategory": "RC Vehicles"
-  },
-  {
-    "toyId": 7,
-    "toyName": "Chef's Kitchen Play Set",
-    "sellerName": "Little Roleplay Co.",
-    "sellerEmail": "roleplay@local.com",
-    "price": 35.49,
-    "rating": 4.4,
-    "availableQuantity": 60,
-    "description": "Complete 30-piece play kitchen set including pots, pans, utensils, and pretend food items.",
-    "pictureURL": "https://i.ibb.co/Rp6vt9rt/images-q-tbn-ANd9-Gc-QEutv0-Zy-CVk-XAP1-Ee-Rcx8-Ae-Iv-B6j-Bi-Hg3ow-s.jpg",
-    "subCategory": "Role Play"
-  },
-  {
-    "toyId": 8,
-    "toyName": "Magnetic Tiles (60 pcs)",
-    "sellerName": "Geo Blocks",
-    "sellerEmail": "geoblocks@local.com",
-    "price": 55.99,
-    "rating": 4.7,
-    "availableQuantity": 80,
-    "description": "Set of 60 strong magnetic tiles in various shapes for open-ended construction and STEAM learning.",
-    "pictureURL": "https://i.ibb.co/r2NFxv6m/images-q-tbn-ANd9-Gc-Q0w-Tc-Dj2-Ce8-Z2-Q-sj7-Wi-Jr401-AF9-Oxbw-q4-Q-s.jpg",
-    "subCategory": "Building Blocks"
-  },
-  {
-    "toyId": 9,
-    "toyName": "Baby Teddy Bear 'Cuddles'",
-    "sellerName": "Snuggle Toys",
-    "sellerEmail": "snuggles@local.com",
-    "price": 15.00,
-    "rating": 4.8,
-    "availableQuantity": 150,
-    "description": "Extremely soft and cuddly teddy bear, 100% safe for infants. A perfect first toy.",
-    "pictureURL": "https://i.ibb.co/vCjKJfGw/images-q-tbn-ANd9-Gc-Q70-TD-2-DALd-Sufqkwx-Cdj3y-XOclanhl8-CNlg-s.jpg",
-    "subCategory": "Plush Toys"
-  },
-  {
-    "toyId": 10,
-    "toyName": "Dinosaur Roar Figure Pack",
-    "sellerName": "Prehistoric Play",
-    "sellerEmail": "dinosaur@local.com",
-    "price": 39.99,
-    "rating": 4.6,
-    "availableQuantity": 55,
-    "description": "Five large, detailed, non-toxic dinosaur figures: T-Rex, Triceratops, Raptor, Stegosaurus, and Brontosaurus.",
-    "pictureURL": "https://i.ibb.co/CpCvS914/images-q-tbn-ANd9-Gc-Tq-ZGekc-Pzh-EM6e59g-Er-Io22s-Sy-Tpf-ON5ct-Sg-s.jpg",
-    "subCategory": "Action Figures"
-  },
-  {
-    "toyId": 11,
-    "toyName": "Art Easel Double-Sided",
-    "sellerName": "Creative Kids Co.",
-    "sellerEmail": "creativekids@local.com",
-    "price": 85.00,
-    "rating": 4.7,
-    "availableQuantity": 15,
-    "description": "Double-sided wooden easel with a chalkboard on one side and a whiteboard on the other. Adjustable height.",
-    "pictureURL": "https://i.ibb.co/tPwGsCw3/images-q-tbn-ANd9-Gc-Ti-Oaewm2-P-o-QLOOx-Bu-TMTijuz-Nuc-JTim3-DWw-s.jpg",
-    "subCategory": "Educational Toys"
-  },
-  {
-    "toyId": 12,
-    "toyName": "Super Vroom Race Car",
-    "sellerName": "Speedy Wheels Inc.",
-    "sellerEmail": "speedywheels@local.com",
-    "price": 10.99,
-    "rating": 4.3,
-    "availableQuantity": 200,
-    "description": "Die-cast metal race car with free-rolling wheels and bright red paint. Collect all 12 models!",
-    "pictureURL": "https://i.ibb.co/nMmRQQHS/images-q-tbn-ANd9-Gc-Qa-NJo-KAv-Uzc7-Z48z-Ba-Vgq-Vh-UI-X9wh6d-LOt-Q-s.jpg",
-    "subCategory": "Die-cast Toys"
-  },
-  {
-    "toyId": 13,
-    "toyName": "The Magical Unicorn Doll",
-    "sellerName": "Dolly's Dreams",
-    "sellerEmail": "dollysdreams@local.com",
-    "price": 29.50,
-    "rating": 4.8,
-    "availableQuantity": 95,
-    "description": "Poseable doll with sparkling unicorn horn and iridescent wings. Encourages fantasy play.",
-    "pictureURL": "https://i.ibb.co/cBscjjq/images-q-tbn-ANd9-Gc-Tymx-Vm-Xu-Ji7-OPz-X5vg-XLCpm-M78y6-NVGPANkg-s.jpg",
-    "subCategory": "Dolls"
-  },
-  {
-    "toyId": 14,
-    "toyName": "Space Shuttle Building Kit",
-    "sellerName": "The Block Shop",
-    "sellerEmail": "blockshop@local.com",
-    "price": 110.00,
-    "rating": 4.9,
-    "availableQuantity": 18,
-    "description": "Advanced 800-piece building set to construct a realistic space shuttle model with detachable booster rockets.",
-    "pictureURL": "https://i.ibb.co/Tx8HqG5R/images-q-tbn-ANd9-Gc-SJsaz9-Sp9-XNBKRi-y5mc9-M-B857dy3sh7-SWg-s.jpg",
-    "subCategory": "Building Blocks"
-  },
-  {
-    "toyId": 15,
-    "toyName": "World Map Jigsaw (500 pcs)",
-    "sellerName": "Puzzles Galore",
-    "sellerEmail": "puzzlegalore@local.com",
-    "price": 19.99,
-    "rating": 4.7,
-    "availableQuantity": 65,
-    "description": "Detailed 500-piece world map puzzle. A fun, challenging way to learn geography.",
-    "pictureURL": "https://i.ibb.co/tTsKMjPx/images-q-tbn-ANd9-Gc-S-4-MQJHQv-LRgdxi0j-Ik-Dg-L3-Ey-Ay-AUNSGGWg-s.jpg",
-    "subCategory": "Puzzles"
-  },
-  {
-    "toyId": 16,
-    "toyName": "Doctor's Roleplay Kit",
-    "sellerName": "Little Roleplay Co.",
-    "sellerEmail": "roleplay@local.com",
-    "price": 22.00,
-    "rating": 4.5,
-    "availableQuantity": 88,
-    "description": "Complete 15-piece medical kit with stethoscope, thermometer, syringe, and carrying case. Great for imagination.",
-    "pictureURL": "https://i.ibb.co/hJjnzhqm/images-q-tbn-ANd9-Gc-T5rj-Osqay6-Wg-BLi-D0-GSi-P-6pw-Yc-Uu-YC49-A-s.jpg",
-    "subCategory": "Role Play"
-  },
-  {
-    "toyId": 17,
-    "toyName": "Talking Parrot Plush",
-    "sellerName": "Snuggle Toys",
-    "sellerEmail": "snuggles@local.com",
-    "price": 28.99,
-    "rating": 4.6,
-    "availableQuantity": 70,
-    "description": "Soft parrot plush that records and repeats your voice in a fun, high-pitched squawk!",
-    "pictureURL": "https://i.ibb.co/yBqP4G5H/images-q-tbn-ANd9-Gc-QYpqx512-Rx-Pvoz-Sag4z3w-Xw-E-ic-Rf-K7-5-F0g-s.jpg",
-    "subCategory": "Plush Toys"
-  },
-  {
-    "toyId": 18,
-    "toyName": "Glow-in-the-Dark Slime Tub",
-    "sellerName": "Messy Fun Supplies",
-    "sellerEmail": "messyfun@local.com",
-    "price": 8.50,
-    "rating": 4.2,
-    "availableQuantity": 180,
-    "description": "Large tub of non-toxic, glittery green slime that glows brightly after being charged under light.",
-    "pictureURL": "https://i.ibb.co/ZR27CDBX/images-q-tbn-ANd9-Gc-RXbgu-EWWTUv-b-BBys-Behev-Py-Tv-Dr-Vm4-C2i-Q-s.jpg",
-    "subCategory": "Arts & Crafts"
-  },
-  {
-    "toyId": 19,
-    "toyName": "Wooden Stacking Rings",
-    "sellerName": "Tracks & Rails Co.",
-    "sellerEmail": "trains@local.com",
-    "price": 14.99,
-    "rating": 4.7,
-    "availableQuantity": 110,
-    "description": "Classic educational toy with five brightly colored wooden rings to stack on a central pole. Develops motor skills.",
-    "pictureURL": "https://i.ibb.co/f3PyYtV/images-q-tbn-ANd9-Gc-Sn-Bv-Q4a2-VA8-Yu-Kx-B3-Rd5f7-MGr60-E7-KP6dm8-Q-s.jpg",
-    "subCategory": "Wooden Toys"
-  },
-  {
-    "toyId": 20,
-    "toyName": "Underwater Submarine RC",
-    "sellerName": "Zoom Zone RC",
-    "sellerEmail": "zoomzone@local.com",
-    "price": 95.00,
-    "rating": 4.9,
-    "availableQuantity": 12,
-    "description": "Fully functional RC submarine for pool or bath use. Features a working light and depth control.",
-    "pictureURL": "https://i.ibb.co/nqFtZRp2/images-q-tbn-ANd9-Gc-S3z2-INYh-MHl-QYun-Jug-TMU17w-Q3p-Bv-DQWu-Vg-s.jpg",
-    "subCategory": "RC Vehicles"
+    "subCategory": "Puzzles",
+    "brand": "PuzzleFun",
+    "material": "Cardboard",
+    "ageRange": "5+ years",
+    "dimensions": "18 x 24 inches",
+    "warranty": "No warranty",
+    "isAvailable": true,
+    "tags": ["puzzle", "ocean", "education"],
+    "testimonials": [
+      {
+        "name": "Layla W.",
+        "comment": "Beautiful design. My kids learned ocean animals while playing!"
+      },
+      {
+        "name": "Marcus J.",
+        "comment": "Good puzzle quality, pieces fit well and don’t bend easily."
+      }
+    ]
   }
 ]

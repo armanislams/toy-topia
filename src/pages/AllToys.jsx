@@ -1,128 +1,313 @@
-import React, { useState } from 'react';
-import { Link, useLoaderData } from 'react-router'; 
-import { FaSearch, FaChevronDown, FaStar } from 'react-icons/fa';
-import useTitle from '../components/hooks/UseTitle';
+// import React, { useState } from 'react';
+// import { Link, useLoaderData } from 'react-router';
+// import { FaSearch, FaChevronDown, FaStar } from 'react-icons/fa';
+// import useTitle from '../components/hooks/UseTitle';
+
+// const AllToys = () => {
+//     useTitle('All Toys');
+//     const toysData = useLoaderData();
+//     const [searchTerm, setSearchTerm] = useState('');
+//     const [filterCategory, setFilterCategory] = useState('');
+
+//     const subCategories = [...new Set(toysData.map(toy => toy.subCategory))];
+
+//     const filteredToys = toysData.filter(toy => {
+//         const matchesSearch = toy.toyName.toLowerCase().includes(searchTerm.toLowerCase());
+//         const matchesCategory = filterCategory === '' || toy.subCategory === filterCategory;
+//         return matchesSearch && matchesCategory;
+//     });
+
+//     return (
+//         <div className="min-h-screen bg-gray-50 py-8 px-2 sm:px-6 lg:px-8">
+//             <div className="max-w-7xl mx-auto">
+//                 <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 text-center mb-8">
+//                     Our Full Toy Inventory ({filteredToys.length})
+//                 </h1>
+
+//                 {/* --- Search and Filter Bar --- */}
+//                 <div className="flex flex-col md:flex-row gap-4 mb-8 p-4 sm:p-6 bg-white rounded-lg shadow-lg border border-indigo-100">
+
+//                     {/* Search Input */}
+//                     <div className="relative flex-1">
+//                         <input
+//                             type="text"
+//                             placeholder="Search by Toy Name..."
+//                             value={searchTerm}
+//                             onChange={(e) => setSearchTerm(e.target.value)}
+//                             className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 text-base"
+//                         />
+//                         <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+//                     </div>
+
+//                     {/* Category Filter */}
+//                     <div className="relative md:w-64">
+//                         <select
+//                             value={filterCategory}
+//                             onChange={(e) => setFilterCategory(e.target.value)}
+//                             className="block w-full appearance-none bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-indigo-500 text-base"
+//                         >
+//                             <option value="">All Categories</option>
+//                             {subCategories.map(category => (
+//                                 <option key={category} value={category}>{category}</option>
+//                             ))}
+//                         </select>
+//                         <FaChevronDown className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 top-1/2 transform -translate-y-1/2" />
+//                     </div>
+//                 </div>
+
+//                 {/* --- Toy Table --- */}
+//                 <div className="overflow-x-auto bg-white rounded-lg shadow-xl">
+//                     <table className="min-w-full divide-y divide-gray-200">
+//                         <thead className="bg-indigo-600 text-white sticky top-0">
+//                             <tr>
+//                                 <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider hidden sm:table-cell">Image</th>
+//                                 <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider">Toy Name</th>
+//                                 <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider hidden md:table-cell">Seller</th>
+//                                 <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider hidden sm:table-cell">Category</th>
+//                                 <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider">Price</th>
+//                                 <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider hidden sm:table-cell">Quantity</th>
+//                                 <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider hidden sm:table-cell">Rating</th>
+//                                 <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider">Details</th>
+//                             </tr>
+//                         </thead>
+
+//                         <tbody className="bg-white divide-y divide-gray-200">
+//                             {filteredToys.length > 0 ? (
+//                                 filteredToys.map((toy) => (
+//                                     <tr key={toy.toyId} className="hover:bg-indigo-50 transition duration-150">
+//                                         <td className="px-4 py-3 whitespace-nowrap hidden sm:table-cell">
+//                                             <img src={toy.pictureURL} alt={toy.toyName} className="w-10 h-10 object-contain rounded-full border border-gray-200" />
+//                                         </td>
+//                                         <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900">{toy.toyName}</td>
+//                                         <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500 hidden md:table-cell">{toy.sellerName}</td>
+//                                         <td className="px-4 py-3 whitespace-nowrap text-sm font-semibold text-indigo-600 hidden sm:table-cell">{toy.subCategory}</td>
+//                                         <td className="px-4 py-3 whitespace-nowrap text-sm font-bold text-red-500">${toy.price?.toFixed(2)}</td>
+//                                         <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-700 hidden sm:table-cell">{toy.availableQuantity}</td>
+//                                         <td className="px-4 py-3 whitespace-nowrap text-sm text-yellow-500 hidden sm:table-cell lg:flex items-center mt-2">
+//                                             <FaStar className="mr-1 text-xs" /> {toy.rating}
+//                                         </td>
+//                                         <td className="px-4 py-3 whitespace-nowrap text-sm font-medium">
+//                                             <Link
+//                                                 to={`/toy/${toy.toyId}`}
+//                                                 className="text-indigo-600 hover:text-indigo-900 font-semibold transition duration-150 p-2 text-xs border border-indigo-600 rounded-lg hover:bg-indigo-600"
+//                                             >
+//                                                 Details
+//                                             </Link>
+//                                         </td>
+//                                     </tr>
+//                                 ))
+//                             ) : (
+//                                 <tr>
+//                                     <td colSpan="8" className="text-center py-10 text-xl text-gray-500">
+//                                         No toys found matching your criteria.
+//                                     </td>
+//                                 </tr>
+//                             )}
+//                         </tbody>
+//                     </table>
+
+//                 </div>
+//                 <div className='flex justify-center items-center mx-auto py-8'>
+//                     <Link
+//                         to="/"
+//                         className="inline-flex items-center px-6 py-3 bg-purple-600 text-white text-md font-bold rounded-full shadow-lg
+//                                        hover:bg-purple-700 transform hover:scale-105 transition-all duration-300 ease-in-out
+//                                        ring-2 ring-purple-300 ring-offset-2 ring-offset-indigo-100"
+//                     >
+//                         Go Back to Toy-Land
+//                         <svg className="ml-2 w-4 h-4 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+//                         </svg>
+//                     </Link>
+//                 </div>
+//             </div>
+//         </div>
+//     );
+// };
+
+// export default AllToys;
+import React, { useState } from "react";
+import { Link, useLoaderData } from "react-router";
+import { FaSearch, FaChevronDown, FaStar } from "react-icons/fa";
+import useTitle from "../components/hooks/UseTitle";
 
 const AllToys = () => {
-    useTitle('All Toys');
-    const toysData = useLoaderData();
-    const [searchTerm, setSearchTerm] = useState('');
-    const [filterCategory, setFilterCategory] = useState('');
+  useTitle("All Toys");
+  const toysData = useLoaderData();
 
-    const subCategories = [...new Set(toysData.map(toy => toy.subCategory))];
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterCategory, setFilterCategory] = useState("");
+  const [sortOption, setSortOption] = useState(""); // ⭐ NEW
 
-    const filteredToys = toysData.filter(toy => {
-        const matchesSearch = toy.toyName.toLowerCase().includes(searchTerm.toLowerCase());
-        const matchesCategory = filterCategory === '' || toy.subCategory === filterCategory;
-        return matchesSearch && matchesCategory;
-    });
+  const subCategories = [...new Set(toysData.map((toy) => toy.subCategory))];
 
-    return (
-        <div className="min-h-screen bg-gray-50 py-8 px-2 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
-                <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 text-center mb-8">
-                    Our Full Toy Inventory ({filteredToys.length})
-                </h1>
+  // --- Filtering ---
+  let filteredToys = toysData.filter((toy) => {
+    const matchesSearch = toy.toyName
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchesCategory =
+      filterCategory === "" || toy.subCategory === filterCategory;
+    return matchesSearch && matchesCategory;
+  });
 
-                {/* --- Search and Filter Bar --- */}
-                <div className="flex flex-col md:flex-row gap-4 mb-8 p-4 sm:p-6 bg-white rounded-lg shadow-lg border border-indigo-100">
+  // --- Sorting Logic --- ⭐ NEW
+  if (sortOption === "price-asc") {
+    filteredToys.sort((a, b) => a.price - b.price);
+  } else if (sortOption === "price-desc") {
+    filteredToys.sort((a, b) => b.price - a.price);
+  } else if (sortOption === "name-asc") {
+    filteredToys.sort((a, b) => a.toyName.localeCompare(b.toyName));
+  } else if (sortOption === "name-desc") {
+    filteredToys.sort((a, b) => b.toyName.localeCompare(a.toyName));
+  } else if (sortOption === "rating-asc") {
+    filteredToys.sort((a, b) => a.rating - b.rating);
+  } else if (sortOption === "rating-desc") {
+    filteredToys.sort((a, b) => b.rating - a.rating);
+  }
 
-                    {/* Search Input */}
-                    <div className="relative flex-1">
-                        <input
-                            type="text"
-                            placeholder="Search by Toy Name..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 text-base"
-                        />
-                        <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                    </div>
+  return (
+    <div className="min-h-screen bg-gray-50 py-8 px-2 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 text-center mb-8">
+          Our Full Toy Inventory ({filteredToys.length})
+        </h1>
 
-                    {/* Category Filter */}
-                    <div className="relative md:w-64">
-                        <select
-                            value={filterCategory}
-                            onChange={(e) => setFilterCategory(e.target.value)}
-                            className="block w-full appearance-none bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-indigo-500 text-base"
-                        >
-                            <option value="">All Categories</option>
-                            {subCategories.map(category => (
-                                <option key={category} value={category}>{category}</option>
-                            ))}
-                        </select>
-                        <FaChevronDown className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 top-1/2 transform -translate-y-1/2" />
-                    </div>
-                </div>
+        {/* --- Search + Filter + Sorting Bar --- */}
+        <div className="flex flex-col md:flex-row gap-4 mb-8 p-4 sm:p-6 bg-white rounded-lg shadow-lg border border-indigo-100">
+          {/* Search Input */}
+          <div className="relative flex-1">
+            <input
+              type="text"
+              placeholder="Search by Toy Name..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 text-base"
+            />
+            <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          </div>
 
-                {/* --- Toy Table --- */}
-                <div className="overflow-x-auto bg-white rounded-lg shadow-xl">
-                    <table className="min-w-full divide-y divide-gray-200">
-                        <thead className="bg-indigo-600 text-white sticky top-0">
-                            <tr>
-                                <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider hidden sm:table-cell">Image</th>
-                                <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider">Toy Name</th>
-                                <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider hidden md:table-cell">Seller</th>
-                                <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider hidden sm:table-cell">Category</th>
-                                <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider">Price</th>
-                                <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider hidden sm:table-cell">Quantity</th>
-                                <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider hidden sm:table-cell">Rating</th>
-                                <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider">Details</th>
-                            </tr>
-                        </thead>
+          {/* Category Filter */}
+          <div className="relative md:w-64">
+            <select
+              value={filterCategory}
+              onChange={(e) => setFilterCategory(e.target.value)}
+              className="block w-full appearance-none bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:border-indigo-500 text-base"
+            >
+              <option value="">All Categories</option>
+              {subCategories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+            <FaChevronDown className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 top-1/2 transform -translate-y-1/2" />
+          </div>
 
-                        <tbody className="bg-white divide-y divide-gray-200">
-                            {filteredToys.length > 0 ? (
-                                filteredToys.map((toy) => (
-                                    <tr key={toy.toyId} className="hover:bg-indigo-50 transition duration-150">
-                                        <td className="px-4 py-3 whitespace-nowrap hidden sm:table-cell">
-                                            <img src={toy.pictureURL} alt={toy.toyName} className="w-10 h-10 object-contain rounded-full border border-gray-200" />
-                                        </td>
-                                        <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900">{toy.toyName}</td>
-                                        <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500 hidden md:table-cell">{toy.sellerName}</td>
-                                        <td className="px-4 py-3 whitespace-nowrap text-sm font-semibold text-indigo-600 hidden sm:table-cell">{toy.subCategory}</td>
-                                        <td className="px-4 py-3 whitespace-nowrap text-sm font-bold text-red-500">${toy.price?.toFixed(2)}</td>
-                                        <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-700 hidden sm:table-cell">{toy.availableQuantity}</td>
-                                        <td className="px-4 py-3 whitespace-nowrap text-sm text-yellow-500 hidden sm:table-cell lg:flex items-center mt-2">
-                                            <FaStar className="mr-1 text-xs" /> {toy.rating}
-                                        </td>
-                                        <td className="px-4 py-3 whitespace-nowrap text-sm font-medium">
-                                            <Link
-                                                to={`/toy/${toy.toyId}`}
-                                                className="text-indigo-600 hover:text-indigo-900 font-semibold transition duration-150 p-2 text-xs border border-indigo-600 rounded-lg hover:bg-indigo-600"
-                                            >
-                                                Details
-                                            </Link>
-                                        </td>
-                                    </tr>
-                                ))
-                            ) : (
-                                <tr>
-                                    <td colSpan="8" className="text-center py-10 text-xl text-gray-500">
-                                        No toys found matching your criteria.
-                                    </td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
-
-                </div>
-                <div className='flex justify-center items-center mx-auto py-8'>
-                    <Link
-                        to="/"
-                        className="inline-flex items-center px-6 py-3 bg-purple-600 text-white text-md font-bold rounded-full shadow-lg 
-                                       hover:bg-purple-700 transform hover:scale-105 transition-all duration-300 ease-in-out
-                                       ring-2 ring-purple-300 ring-offset-2 ring-offset-indigo-100"
-                    >
-                        Go Back to Toy-Land
-                        <svg className="ml-2 w-4 h-4 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </Link>
-                </div>
-            </div>
+          {/* Sorting Filter — ⭐ NEW */}
+          <div className="relative md:w-64">
+            <select
+              value={sortOption}
+              onChange={(e) => setSortOption(e.target.value)}
+              className="block w-full appearance-none bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:border-indigo-500 text-base"
+            >
+              <option value="">Sort By</option>
+              <option value="price-asc">Price: Low → High</option>
+              <option value="price-desc">Price: High → Low</option>
+              <option value="name-asc">Name: A → Z</option>
+              <option value="name-desc">Name: Z → A</option>
+              <option value="rating-asc">Rating: Low → High</option>
+              <option value="rating-desc">Rating: High → Low</option>
+            </select>
+            <FaChevronDown className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 top-1/2 transform -translate-y-1/2" />
+          </div>
         </div>
-    );
+
+        {/* --- Table --- */}
+        <div className="overflow-x-auto bg-white rounded-lg shadow-xl">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-indigo-600 text-white sticky top-0">
+              <tr>
+                <th className="px-4 py-3 hidden sm:table-cell">Image</th>
+                <th className="px-4 py-3">Toy Name</th>
+                <th className="px-4 py-3 hidden md:table-cell">Seller</th>
+                <th className="px-4 py-3 hidden sm:table-cell">Category</th>
+                <th className="px-4 py-3">Price</th>
+                <th className="px-4 py-3 hidden sm:table-cell">Quantity</th>
+                <th className="px-4 py-3 hidden sm:table-cell">Rating</th>
+                <th className="px-4 py-3">Details</th>
+              </tr>
+            </thead>
+
+            <tbody className="bg-white divide-y divide-gray-200">
+              {filteredToys.length > 0 ? (
+                filteredToys.map((toy) => (
+                  <tr key={toy.toyId} className="hover:bg-indigo-50 transition">
+                    <td className="px-4 py-3 hidden sm:table-cell">
+                      <img
+                        src={toy.pictureURL}
+                        alt={toy.toyName}
+                        className="w-10 h-10 object-contain rounded-full border"
+                      />
+                    </td>
+
+                    <td className="px-4 py-3">{toy.toyName}</td>
+                    <td className="px-4 py-3 hidden md:table-cell">
+                      {toy.sellerName}
+                    </td>
+
+                    <td className="px-4 py-3 hidden sm:table-cell text-indigo-600 font-semibold">
+                      {toy.subCategory}
+                    </td>
+
+                    <td className="px-4 py-3 font-bold text-red-500">
+                      ${toy.price.toFixed(2)}
+                    </td>
+
+                    <td className="px-4 py-3 hidden sm:table-cell">
+                      {toy.availableQuantity}
+                    </td>
+
+                    <td className="px-4 py-3 hidden sm:table-cell flex items-center text-yellow-500">
+                      <FaStar className="mr-1" /> {toy.rating}
+                    </td>
+
+                    <td className="px-4 py-3">
+                      <Link
+                        to={`/toy/${toy.toyId}`}
+                        className="text-indigo-600 hover:bg-indigo-600 hover:text-white font-semibold border p-2 rounded-lg transition"
+                      >
+                        Details
+                      </Link>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td
+                    colSpan="8"
+                    className="text-center py-10 text-xl text-gray-500"
+                  >
+                    No toys found.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Back Button */}
+        <div className="flex justify-center py-8">
+          <Link
+            to="/"
+            className="px-6 py-3 bg-purple-600 text-white font-bold rounded-full shadow-lg hover:bg-purple-700 transform hover:scale-105 transition"
+          >
+            Go Back to Toy-Land
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default AllToys;
