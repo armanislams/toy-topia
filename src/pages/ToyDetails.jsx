@@ -98,7 +98,7 @@ const ToyDetails = () => {
                 {user ? (
                   <button
                     onClick={() => toast.success("Added To Your Cart")}
-                    className="w-1/2 py-4 bg-indigo-600 text-white text-xl font-bold rounded-xl shadow-lg 
+                    className=" py-4 bg-indigo-600 text-white text-xl font-bold rounded-xl shadow-lg 
                    hover:bg-indigo-700 transition duration-200 disabled:opacity-50"
                     disabled={toy.availableQuantity === 0}
                   >
@@ -107,10 +107,10 @@ const ToyDetails = () => {
                 ) : (
                   <Link to={"/login"} state={location.pathname}>
                     <button
-                      className=" bg-indigo-600 text-white text-xl font-bold rounded-xl shadow-lg 
+                      className="py-4 px-1 bg-indigo-600 text-white text-xl font-bold rounded-xl shadow-lg 
                    hover:bg-indigo-700 transition duration-200 disabled:opacity-50"
                     >
-                      Login Now to add to your cart
+                      Login to add to your cart
                     </button>
                   </Link>
                 )}
